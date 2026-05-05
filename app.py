@@ -5,6 +5,23 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash, generate_password_hash
 import pymysql
 
+def load_local_env():
+    if not os.path.exists(".env"):
+        return
+
+    with open(".env", encoding="utf-8") as env_file:
+        for line in env_file:
+            line = line.strip()
+
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip("'\""))
+
+
+load_local_env()
+
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 DB_HOST = os.environ.get("DB_HOST", "localhost")
