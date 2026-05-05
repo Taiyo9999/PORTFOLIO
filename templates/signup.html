@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="frame auth_frame">
+        <nav class="navigator">
+            <div class="site_brand">
+                <a class="site_name" href="{{ url_for('index') }}">HELLOSUNSHINE</a>
+                <a class="site_name_subtitle">Taeyang Kwon</a>
+            </div>
+        </nav>
+
+        <main class="auth_shell">
+            <section class="auth_card">
+                <p class="auth_label">JOIN US</p>
+                <h1 class="auth_title">회원가입</h1>
+                <p class="auth_text">사용자 저장, 비밀번호 암호화, 로그인 세션 등 연결</p>
+
+                {% if error %}
+                <div class="auth_message error">{{ error }}</div>
+                {% endif %}
+
+                {% if success %}
+                <div class="auth_message success">{{ success }}</div>
+                <a class="auth_link_button" href="{{ url_for('login') }}">로그인하러 가기</a>
+                {% else %}
+                <form class="auth_form" action="{{ url_for('signup') }}" method="post">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" name="username" placeholder="사용할 아이디">
+
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호">
+
+                    <label for="password_confirm">비밀번호 확인</label>
+                    <input type="password" id="password_confirm" name="password_confirm" placeholder="비밀번호 다시 입력">
+
+                    <label for="nickname">닉네임</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="게시판에 표시될 이름">
+
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" placeholder="이름">
+
+                    <label for="birthdate">생년월일</label>
+                    <input type="date" id="birthdate" name="birthdate">
+
+                    <label for="school">학교</label>
+                    <input type="text" id="school" name="school" placeholder="학교">
+
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com">
+
+                    <button type="submit">회원가입</button>
+                </form>
+
+                <p class="auth_switch">이미 계정이 있나요? <a href="{{ url_for('login') }}">로그인</a></p>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>

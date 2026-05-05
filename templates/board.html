@@ -1,0 +1,70 @@
+<section class="page_content" data-title="BOARD" data-subtitle="Community Page" data-image="{{ url_for('static', filename='cat3.jpg') }}" data-label="BOARD">
+    <h2 class="page_content_title">게시판 공간입니다.</h2>
+    <p class="page_content_text">글 목록, 검색, 작성 버튼 같은 게시판 내용 등 배치해야함</p>
+</section>
+
+<div class="board_panel">
+    <form class="board_search" action="{{ url_for('index') }}" method="get">
+        <input type="hidden" name="section" value="board">
+        <input type="text" name="keyword" value="{{ keyword or '' }}" placeholder="검색어 입력">
+        <button type="submit">검색</button>
+    </form>
+
+    <form class="board_form" id="postForm" enctype="multipart/form-data">
+        <input type="text" id="title" name="title" placeholder="제목">
+        <textarea id="content" name="content" placeholder="내용"></textarea>
+        <label class="inline_check">
+            <input type="checkbox" name="is_secret" value="1">
+            비밀글
+        </label>
+        <input type="file" name="attachment">
+        <button type="submit">작성</button>
+    </form>
+
+    <div class="board_list" id="postList">
+        {% for post in posts %}
+        <article class="board_post">
+            <h3>
+                {% if post.is_secret %}[비밀글] {% endif %}{{ post.title }}
+            </h3>
+            <p class="post_author">
+                작성자:
+                {% if post.user_id %}
+                <a href="{{ url_for('profile', user_id=post.user_id) }}">{{ post.author_nickname or post.author_username }}</a>
+                {% else %}
+                익명
+                {% endif %}
+            </p>
+            {% if post.can_view %}
+            <p>{{ post.content }}</p>
+            {% if post.file_name %}
+            <a class="file_link" href="{{ url_for('download_file', post_id=post.id) }}">첨부파일: {{ post.file_name }}</a>
+            {% endif %}
+            {% else %}
+            <p>작성자만 볼 수 있는 비밀글입니다.</p>
+            {% endif %}
+            {% if post.can_manage %}
+            <div class="post_actions">
+                <details class="post_edit">
+                    <summary>수정</summary>
+                    <form action="{{ url_for('edit_post', post_id=post.id) }}" method="post">
+                        <input type="text" name="title" value="{{ post.title }}">
+                        <textarea name="content">{{ post.content }}</textarea>
+                        <label class="inline_check">
+                            <input type="checkbox" name="is_secret" value="1" {% if post.is_secret %}checked{% endif %}>
+                            비밀글
+                        </label>
+                        <button type="submit">수정 완료</button>
+                    </form>
+                </details>
+                <form action="{{ url_for('delete_post', post_id=post.id) }}" method="get">
+                    <button type="submit">삭제</button>
+                </form>
+            </div>
+            {% endif %}
+        </article>
+        {% else %}
+        <p class="empty_board">아직 작성된 글이 없습니다.</p>
+        {% endfor %}
+    </div>
+</div>

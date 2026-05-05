@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROFILE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="frame auth_frame">
+        <nav class="navigator">
+            <div class="site_brand">
+                <a class="site_name" href="{{ url_for('index') }}">HELLOSUNSHINE</a>
+                <a class="site_name_subtitle">Taeyang Kwon</a>
+            </div>
+        </nav>
+
+        <main class="auth_shell">
+            <section class="auth_card">
+                <p class="auth_label">MEMBER PROFILE</p>
+                {% if user.profile_image %}
+                <img class="profile_image" src="{{ url_for('profile_image', filename=user.profile_image) }}" alt="프로필 이미지">
+                {% endif %}
+                <h1 class="auth_title">{{ user.nickname or user.username }}</h1>
+                <p class="auth_text">아이디: {{ user.username }}</p>
+                <p class="auth_text">이름: {{ user.name or "미입력" }}</p>
+                <p class="auth_text">학교: {{ user.school or "미입력" }}</p>
+                <p class="auth_text">이메일: {{ user.email or "미입력" }}</p>
+                <a class="auth_link_button" href="{{ url_for('index', section='board') }}">돌아가기</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

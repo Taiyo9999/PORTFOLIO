@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,500;0,600;0,800;0,900;1,200;1,400;1,500;1,600;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    
+    <div class="frame">
+        <nav class="navigator">
+            <div class="site_brand">
+                <h3 class="site_name">HELLOSUNSHINE</h3>
+                <a class="site_name_subtitle">Taeyang Kwon</a>
+            </div>
+            <div class="menu_area">
+                <button type="button" class="menu_btn" aria-label="메뉴 열기" aria-expanded="false">⋮</button>
+                <div class="dropdown_menu" aria-hidden="true">
+                    {% if session.get("user_id") %}
+                    <span class="login_status">{{ session.get("nickname") or session.get("username") }}님</span>
+                    <a href="{{ url_for('mypage') }}">내정보</a>
+                    <a href="{{ url_for('logout') }}">로그아웃</a>
+                    <a href="{{ url_for('index', section='contact') }}">문의</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}">로그인</a>
+                    <a href="{{ url_for('signup') }}">회원가입</a>
+                    <a href="{{ url_for('index', section='board') }}">공지사항</a>
+                    <a href="{{ url_for('index', section='contact') }}">문의</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <main class="portfolio_shell">
+            <section class="player_card" aria-label="포트폴리오 페이지 선택기">
+                <div class="cover_frame">
+                    <img class="cover_image" src="{{ url_for('static', filename='cat1.jpg') }}" alt="ABOUT ME 이미지">
+                </div>
+
+                <div class="track_header">
+                    <div>
+                        <p class="track_label">CURRENT PAGE</p>
+                        <h1 class="track_title">ABOUT ME</h1>
+                        <p class="track_subtitle">Taeyang Kwon</p>
+                    </div>
+                    <button type="button" class="heart_btn" aria-label="즐겨찾기" aria-pressed="false">❤</button>
+                </div>
+
+                <div class="progress_area" aria-label="페이지 진행 위치">
+                    <div class="progress_bar">
+                        <span class="progress_fill"></span>
+                        <span class="progress_knob"></span>
+                    </div>
+                    <div class="progress_times">
+                        <span class="current_time">0:00</span>
+                        <span class="total_time">0:04</span>
+                    </div>
+                </div>
+
+                <div class="player_controls">
+                    <button type="button" class="control_btn shuffle_btn" aria-label="랜덤 페이지">↝</button>
+                    <button type="button" class="control_btn prev_btn" aria-label="이전 페이지">|◀</button>
+                    <button type="button" class="control_btn play_btn" aria-label="현재 페이지 보기">▶</button>
+                    <button type="button" class="control_btn next_btn" aria-label="다음 페이지">▶|</button>
+                    <button type="button" class="control_btn first_page_btn" aria-label="처음 페이지">↻</button>
+                </div>
+            </section>
+        </main>
+
+        <section class="page_detail" aria-live="polite">
+            <button type="button" class="detail_close_btn" aria-label="본문 닫고 위로 이동"></button>
+            <div class="detail_inner">
+                <p class="detail_label">ABOUT ME</p>
+                <h2 class="detail_title">안녕하세요, Taeyang Kwon입니다.</h2>
+                <p class="detail_text">자기소개, 공부 중인 기술, 관심 있는 개발 분야 등</p>
+
+                <div class="page_content_data">
+                    {% include "aboutme.html" %}
+                    {% include "project.html" %}
+                    {% include "board.html" %}
+                    {% include "contact.html" %}
+                    {% include "myinfo.html" %}
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

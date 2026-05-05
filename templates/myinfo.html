@@ -1,0 +1,39 @@
+<section class="page_content" data-title="MY INFO" data-subtitle="Member Profile" data-image="{% if session.get('profile_image') %}{{ url_for('profile_image', filename=session.get('profile_image')) }}{% else %}{{ url_for('static', filename='cat5.jpg') }}{% endif %}" data-label="MY INFO">
+    {% if session.get("user_id") %}
+    <h2 class="page_content_title">{{ session.get("nickname") or session.get("username") }}님의 내정보</h2>
+    <p class="page_content_text">아이디: {{ session.get("username") }} / 이름: {{ session.get("name") or "미입력" }} / 학교: {{ session.get("school") or "미입력" }} / 이메일: {{ session.get("email") or "미입력" }}</p>
+    {% else %}
+    <h2 class="page_content_title">로그인이 필요합니다.</h2>
+    <p class="page_content_text">내정보를 보려면 먼저 로그인해주세요.</p>
+    {% endif %}
+</section>
+
+{% if session.get("user_id") %}
+<div class="profile_panel">
+    {% if session.get("profile_image") %}
+    <img class="profile_image" src="{{ url_for('profile_image', filename=session.get('profile_image')) }}" alt="프로필 이미지">
+    {% endif %}
+
+    <form class="auth_form profile_form" action="{{ url_for('update_profile') }}" method="post" enctype="multipart/form-data">
+        <label for="profile_nickname">닉네임</label>
+        <input type="text" id="profile_nickname" name="nickname" value="{{ session.get('nickname') or '' }}">
+
+        <label for="profile_name">이름</label>
+        <input type="text" id="profile_name" name="name" value="{{ session.get('name') or '' }}">
+
+        <label for="profile_birthdate">생년월일</label>
+        <input type="date" id="profile_birthdate" name="birthdate" value="{{ session.get('birthdate') or '' }}">
+
+        <label for="profile_school">학교</label>
+        <input type="text" id="profile_school" name="school" value="{{ session.get('school') or '' }}">
+
+        <label for="profile_email">이메일</label>
+        <input type="email" id="profile_email" name="email" value="{{ session.get('email') or '' }}">
+
+        <label for="profile_image">프로필 이미지</label>
+        <input type="file" id="profile_image" name="profile_image">
+
+        <button type="submit">내 정보 수정</button>
+    </form>
+</div>
+{% endif %}

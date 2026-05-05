@@ -1,0 +1,726 @@
+body{
+    background: linear-gradient(skyblue ,rgb(220 214 202) 50%);
+    min-height: 100vh;
+    margin: 0;
+}
+
+.frame{
+    margin: 30px 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigator{
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+li{
+    display: inline;
+    align-self: center;
+    margin:0;
+    margin-left: 15px;
+}
+
+ul{
+    margin:0;
+}
+
+.site_brand{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.site_name{
+    margin: 0;
+    font-family: 'Montserrat',sans-serif;
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.site_name_subtitle{
+    margin: 0;
+    font-family: 'Montserrat',sans-serif;
+    color: gray;
+}
+
+
+.menu_btn{
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    line-height: 1;
+    padding: 0 6px;
+}
+
+.menu_area{
+    position: relative;
+}
+
+.dropdown_menu{
+    position: absolute;
+    top: 42px;
+    right: 0;
+    min-width: 120px;
+    padding: 8px 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    transform-origin: top right;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 10;
+}
+
+.dropdown_menu.active{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.dropdown_menu a{
+    display: block;
+    padding: 9px 14px;
+    color: #222;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.login_status{
+    display: block;
+    padding: 9px 14px;
+    color: rgba(0, 0, 0, 0.58);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.auth_helper_links{
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dropdown_menu a:hover{
+    background: rgba(0, 0, 0, 0.08);
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+a.site_name{
+    color: white;
+    font-weight: 800;
+}
+
+a.site_name_subtitle{
+    color: gray;
+}
+
+.portfolio_shell{
+    min-height: calc(100vh - 110px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player_card{
+    width: min(330px, 88vw);
+    padding: 28px 28px 34px;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(144, 196, 232, 0.95), rgba(225, 218, 199, 0.95));
+    box-shadow: 0 24px 55px rgba(38, 54, 70, 0.2);
+}
+
+.cover_frame{
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover_image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cover_image.changing{
+    opacity: 0;
+    transform: scale(0.96);
+}
+
+.track_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.track_label{
+    margin: 0 0 2px;
+    color: rgba(0, 0, 0, 0.45);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.track_title{
+    margin: 0;
+    color: #303030;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.track_subtitle{
+    margin: 4px 0 0;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.heart_btn{
+    border: none;
+    background: transparent;
+    color: rgba(210, 74, 82, 0.5);
+    font-size: 27px;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 1px 4px rgba(216, 77, 88, 0.14);
+    cursor: pointer;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.heart_btn.active{
+    color: #d84d58;
+    transform: scale(1.16);
+}
+
+.progress_area{
+    margin-top: 22px;
+}
+
+.progress_bar{
+    position: relative;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.progress_fill{
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0%;
+    border-radius: inherit;
+    background: #303030;
+    transition: width 0.2s ease;
+}
+
+.progress_knob{
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #303030;
+    transform: translate(-50%, -50%);
+    transition: left 0.2s ease;
+}
+
+.progress_times{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+    color: rgba(0, 0, 0, 0.32);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.player_controls{
+    display: grid;
+    grid-template-columns: 36px 42px 58px 42px 36px;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    margin-top: 18px;
+}
+
+.control_btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #383838;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.control_btn:hover{
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.shuffle_btn,
+.first_page_btn{
+    width: 28px;
+    height: 28px;
+    color: white;
+    background: rgba(50, 50, 50, 0.38);
+    font-size: 17px;
+}
+
+.play_btn{
+    width: 58px;
+    height: 58px;
+    background: #303030;
+    color: white;
+    font-size: 24px;
+}
+
+.page_detail{
+    position: relative;
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease, padding 0.35s ease;
+}
+
+.page_detail.active{
+    min-height: 100vh;
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 90px 0;
+}
+
+.detail_close_btn{
+    position: absolute;
+    top: 34px;
+    right: 8px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(48, 48, 48, 0.86);
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.detail_close_btn::before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-top: 5px solid white;
+    border-left: 5px solid white;
+    transform: translateY(3px) rotate(45deg);
+}
+
+.page_detail.active .detail_close_btn{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.detail_close_btn:hover{
+    transform: scale(1.08);
+}
+
+.detail_inner{
+    max-width: 760px;
+}
+
+.detail_label{
+    margin: 0 0 12px;
+    color: rgba(0, 0, 0, 0.42);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.detail_title{
+    margin: 0;
+    color: #222;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 44px;
+}
+
+.detail_text{
+    color: rgba(0, 0, 0, 0.62);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.board_panel{
+    display: none;
+    margin-top: 34px;
+}
+
+.page_detail.show_board .board_panel{
+    display: block;
+}
+
+.page_content{
+    display: none;
+}
+
+.page_detail.show_board .detail_text{
+    margin-bottom: 0;
+}
+
+.board_search,
+.board_form{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.board_form{
+    flex-direction: column;
+}
+
+.board_search input,
+.board_form input,
+.board_form textarea{
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.72);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+}
+
+.board_form textarea{
+    min-height: 110px;
+    resize: vertical;
+}
+
+.board_search button,
+.board_form button,
+.post_actions button{
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    background: #303030;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.board_list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.board_post{
+    padding: 18px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.board_post h3{
+    margin: 0 0 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.board_post p{
+    margin: 0;
+    color: rgba(0, 0, 0, 0.62);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.6;
+}
+
+.post_actions{
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    align-items: flex-start;
+}
+
+.empty_board{
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post_author,
+.file_link{
+    display: block;
+    margin: 6px 0 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.inline_check{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.62);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.post_edit{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post_edit summary{
+    border-radius: 8px;
+    padding: 11px 16px;
+    background: #303030;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+
+.post_edit summary::-webkit-details-marker{
+    display: none;
+}
+
+.post_edit form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.post_edit input,
+.post_edit textarea{
+    width: min(420px, 70vw);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.72);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post_edit textarea{
+    min-height: 90px;
+    resize: vertical;
+}
+
+.profile_panel{
+    display: none;
+    margin-top: 34px;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.page_detail.show_myinfo .profile_panel{
+    display: block;
+}
+
+.profile_image{
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 18px;
+}
+
+.profile_form{
+    max-width: 460px;
+}
+
+.auth_frame{
+    min-height: calc(100vh - 60px);
+}
+
+.auth_shell{
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth_card{
+    width: min(390px, 88vw);
+    padding: 34px 32px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 24px 55px rgba(38, 54, 70, 0.18);
+}
+
+.auth_label{
+    margin: 0 0 8px;
+    color: rgba(0, 0, 0, 0.42);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.auth_title{
+    margin: 0;
+    color: #303030;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 34px;
+}
+
+.auth_text{
+    margin: 10px 0 26px;
+    color: rgba(0, 0, 0, 0.56);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.auth_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth_message{
+    margin: 0 0 18px;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.auth_message.error{
+    background: rgba(216, 77, 88, 0.13);
+    color: #a9313b;
+}
+
+.auth_message.success{
+    background: rgba(48, 48, 48, 0.1);
+    color: #303030;
+}
+
+.auth_form label{
+    color: rgba(0, 0, 0, 0.62);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.auth_form input{
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 8px;
+    padding: 13px 14px;
+    background: rgba(255, 255, 255, 0.82);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.auth_form input:focus{
+    border-color: rgba(48, 48, 48, 0.46);
+    box-shadow: 0 0 0 3px rgba(48, 48, 48, 0.08);
+}
+
+.auth_form button{
+    margin-top: 12px;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 16px;
+    background: #303030;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.auth_link_button{
+    display: block;
+    border-radius: 8px;
+    padding: 13px 16px;
+    background: #303030;
+    color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.auth_link_button:hover{
+    color: white;
+}
+
+.auth_switch{
+    margin: 20px 0 0;
+    color: rgba(0, 0, 0, 0.54);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth_switch a{
+    color: #303030;
+    font-weight: 800;
+}
+
+@media (max-width: 760px){
+    .frame{
+        margin: 24px;
+    }
+
+    .site_name{
+        font-size: 24px;
+    }
+
+    .portfolio_shell{
+        min-height: calc(100vh - 90px);
+    }
+
+    .player_card{
+        padding: 22px;
+    }
+
+    .detail_title{
+        font-size: 32px;
+    }
+
+    .board_search{
+        flex-direction: column;
+    }
+}
